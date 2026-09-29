@@ -1,2 +1,4 @@
 # HashNote
 A project where each day for 100 days of code I am gonna keep adding more and more to this, starting with a simple hashmap building my way up to a note app like obsidian 
+
+I'll be updating this daily, starting with this simple little readme and then later tonight I'll be putting on the hashmap. I would like to be updating this repo at least once per day  with either a new feature or a bug fix or something along those lines. I want to spend at least an hour a day on this and, crucially, I don't want to use any AI to help guide me with it because this is to keep with the original vibe of learning this stuff like people did before AI, by just wiring in and coding hard. 
