@@ -1,5 +1,30 @@
 from hashmap import HashMap
-#the above imports the hashmap class from hashmap.py
+import json
+import os
+
+from hashmap import HashMap
+
+NOTES_FILE = "notes.json"
+
+
+def load_notes():
+    notes = HashMap()
+    if os.path.exists(NOTES_FILE):
+        with open(NOTES_FILE) as f:
+            data = json.load(f)  # deserialize: file -> dict
+        for title, body in data.items():
+            notes.put(title, body)
+    return notes
+
+
+def save_notes(notes):
+    pairs = notes.get_keys_and_values()
+    data = {}
+    for i in range(pairs.length()):
+        title, body = pairs.get_at_index(i)
+        data[title] = body
+    with open(NOTES_FILE, "w") as f:
+        json.dump(data, f, indent=2)  # serialize: dict -> file
 
 def main():
     notes = HashMap()
