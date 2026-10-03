@@ -1,4 +1,3 @@
-from hashmap import HashMap
 import json
 import os
 
@@ -27,7 +26,7 @@ def save_notes(notes):
         json.dump(data, f, indent=2)  # serialize: dict -> file
 
 def main():
-    notes = HashMap()
+    notes = load_notes()
     #The main logic. While it's running, it will ask the user for a command. The user can create a new note, read an existing note, list all notes, delete a note, or quit the program.
     while True:
         cmd = input("\n[new / read / list / delete / quit] > ").strip().lower()
@@ -36,6 +35,7 @@ def main():
             title = input("Title: ").strip()
             body = input("Note: ")
             notes.put(title, body)
+            save_notes(notes)
             print(f"Saved '{title}'.")
 
         elif cmd == "read":
@@ -53,8 +53,12 @@ def main():
 
         elif cmd == "delete":
             title = input("Title: ").strip()
-            notes.remove(title)
-            print(f"Deleted '{title}' (if it existed).")
+            if notes.contains_key(title):
+                notes.remove(title)
+                save_notes(notes)
+                print(f"Deleted '{title}'.")
+            else:
+                print("No note with that title.")
 
         elif cmd == "quit":
             break
@@ -63,4 +67,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-#currently this only saves in memory but it is a proof of concept for having it all work with the hashmap itself    
